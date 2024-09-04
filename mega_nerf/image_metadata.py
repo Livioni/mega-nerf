@@ -27,7 +27,7 @@ class ImageMetadata:
         if size[0] != self.W or size[1] != self.H:
             rgbs = rgbs.resize((self.W, self.H), Image.LANCZOS)
 
-        return torch.ByteTensor(np.asarray(rgbs))
+        return torch.ByteTensor(np.array(rgbs,copy=True))
 
     def load_mask(self) -> Optional[torch.Tensor]:
         if self._mask_path is None:

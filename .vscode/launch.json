@@ -1,0 +1,52 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python 调试程序: 当前文件",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "eval",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "mega_nerf/eval.py",
+            "console": "integratedTerminal",
+            "env": {
+                "CUDA_LAUNCH_BLOCKING": "1"
+            },
+            "args": [
+                "--config_file", "configs/mega-nerf/rubble.yaml",
+                "--exp_name", "evaluation/rubble",
+                "--dataset_path", "refined_datasets/rubble",
+                "--container_path", "models/rubble/rubble.pt"
+            ]
+        },
+        {
+            "name": "Train",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "mega_nerf/train.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--config_file",
+                "configs/mega-nerf/rubble.yaml",
+                "--train_scale_factor",
+                "4",
+                "--exp_name",
+                "results/rubble",
+                "--dataset_path",
+                "refined_datasets/rubble",
+                "--chunk_paths",
+                "results/rubble/scratch",
+                "--cluster_mask_path",
+                "refined_datasets/rubble/mask/0"
+            ]
+        }
+    ]
+}
